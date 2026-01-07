@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .floating-animation-delay {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Luxurious scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #ec4899, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #db2777, #7c3aed);
+}
+
+/* Action/Expression styling for bracketed text - Higher specificity */
+.action-expression {
+  font-style: italic;
+  font-weight: 500;
+  background: linear-gradient(45deg, #ec4899, #8b5cf6) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  padding: 1px 2px;
+  border-radius: 3px;
+  position: relative;
+}
+
+/* Character dialogue styling for yellow text */
+.character-dialogue {
+  color: #eab308 !important;
+  font-weight: 500;
+}
+
+/* Dark mode character dialogue */
+.dark .character-dialogue {
+  color: #fbbf24 !important;
+}
+
+.action-expression::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
+  border-radius: 3px;
+  z-index: -1;
+}
+
+/* Dark mode action expressions */
+.dark .action-expression {
+  background: linear-gradient(45deg, #f472b6, #a78bfa) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+.dark .action-expression::before {
+  background: linear-gradient(45deg, rgba(244, 114, 182, 0.15), rgba(167, 139, 250, 0.15));
+}
+
+/* Message bubbles enhancement for roleplay mode */
+.message-bubble-enhanced .chat-bubble-user {
+  background: rgba(236, 72, 153, 0.9) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.message-bubble-enhanced .chat-bubble-ai {
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  color: white !important;
+}
+
+.message-bubble-enhanced .text-muted-foreground {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* AI Girlfriend App Design System - Beautiful gradients and romantic colors */
+
+@layer base {
+  :root {
+    --background: 350 20% 98%;
+    --foreground: 340 15% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 340 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 15% 15%;
+
+    --primary: 330 85% 65%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 340 80% 75%;
+
+    --secondary: 320 40% 95%;
+    --secondary-foreground: 340 15% 15%;
+
+    --muted: 320 20% 96%;
+    --muted-foreground: 340 10% 55%;
+
+    --accent: 310 60% 88%;
+    --accent-foreground: 340 15% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 320 20% 92%;
+    --input: 320 20% 96%;
+    --ring: 330 85% 65%;
+
+    /* AI Girlfriend App Specific Design Tokens */
+    --chat-user: 210 100% 97%;
+    --chat-ai: 330 100% 97%;
+    --gradient-romantic: linear-gradient(135deg, hsl(330 85% 65%), hsl(340 80% 75%), hsl(350 75% 80%));
+    --gradient-subtle: linear-gradient(180deg, hsl(350 20% 98%), hsl(320 20% 96%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(320 20% 98%));
+    --shadow-romantic: 0 10px 30px -10px hsl(330 85% 65% / 0.3);
+    --shadow-glow: 0 0 40px hsl(340 80% 75% / 0.4);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 340 20% 8%;
+    --foreground: 350 20% 90%;
+
+    --card: 340 15% 10%;
+    --card-foreground: 350 20% 90%;
+
+    --popover: 340 15% 10%;
+    --popover-foreground: 350 20% 90%;
+
+    --primary: 330 85% 65%;
+    --primary-foreground: 340 20% 8%;
+    --primary-glow: 340 80% 75%;
+
+    --secondary: 340 15% 15%;
+    --secondary-foreground: 350 20% 90%;
+
+    --muted: 340 15% 15%;
+    --muted-foreground: 350 10% 60%;
+
+    --accent: 340 15% 15%;
+    --accent-foreground: 350 20% 90%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 350 20% 90%;
+
+    --border: 340 15% 15%;
+    --input: 340 15% 15%;
+    --ring: 330 85% 65%;
+
+    /* Dark mode specific tokens */
+    --chat-user: 340 15% 12%;
+    --chat-ai: 330 20% 12%;
+    --gradient-romantic: linear-gradient(135deg, hsl(330 85% 65%), hsl(340 80% 75%), hsl(350 75% 80%));
+    --gradient-subtle: linear-gradient(180deg, hsl(340 20% 8%), hsl(340 15% 10%));
+    --gradient-card: linear-gradient(145deg, hsl(340 15% 10%), hsl(340 20% 8%));
+    --shadow-romantic: 0 10px 30px -10px hsl(330 85% 65% / 0.4);
+    --shadow-glow: 0 0 40px hsl(340 80% 75% / 0.3);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-subtle);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .chat-bubble-user {
+    background: hsl(var(--chat-user));
+    @apply border border-border/50 rounded-2xl rounded-br-md;
+  }
+  
+  .chat-bubble-ai {
+    background: hsl(var(--chat-ai));
+    @apply border border-border/50 rounded-2xl rounded-bl-md;
+  }
+  
+  .gradient-text {
+    background: var(--gradient-romantic);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .card-romantic {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-romantic);
+    transition: var(--transition-smooth);
+  }
+  
+  .card-romantic:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+}
+
+/* Mobile safe area support */
+.pb-safe-area {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-padding-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* Mobile viewport optimization */
+@media (max-width: 640px) {
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  .chat-bubble-user,
+  .chat-bubble-ai {
+    max-width: 85% !important;
+  }
+}
