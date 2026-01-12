@@ -26,19 +26,22 @@ import img21 from "@assets/21_1753175290646.jpg";
 import img22 from "@assets/22_1753175290645.jpg";
 
 export class AIService {
-  private groq: Groq;
+  private groq: Groq | null = null;
   private conversationState: Map<string, any> = new Map();
   
   constructor() {
-    // Initialize Groq with user's API key from localStorage
+    // Initialize Groq lazily when API key is available
+    this.initializeGroq();
+  }
+
+  private initializeGroq() {
     const apiKey = localStorage.getItem('groq_api_key');
-    if (!apiKey) {
-      throw new Error('Groq API key not found. Please set your API key in settings.');
+    if (apiKey) {
+      this.groq = new Groq({
+        apiKey: apiKey,
+        dangerouslyAllowBrowser: true
+      });
     }
-    this.groq = new Groq({
-      apiKey: apiKey,
-      dangerouslyAllowBrowser: true
-    });
   }
 
   setApiKey(apiKey: string) {
@@ -55,7 +58,7 @@ export class AIService {
 
   useDefaultApiKey() {
     localStorage.removeItem('groq_api_key');
-    throw new Error('Please set your Groq API key in settings.');
+    this.groq = null;
   }
 
   // Check if user is requesting photos
@@ -616,11 +619,19 @@ Respond as this girlfriend character. Write a moderate, engaging response (2-3 s
       return { message: "Please set your Groq API key first baby!" };
     }
 
-    // Update Groq instance if needed
-    this.groq = new Groq({
-      apiKey: apiKey,
-      dangerouslyAllowBrowser: true
-    });
+    // Initialize or update Groq instance if needed
+    if (!this.groq) {
+      this.groq = new Groq({
+        apiKey: apiKey,
+        dangerouslyAllowBrowser: true
+      });
+    } else {
+      // Reinitialize if API key might have changed (simpler approach)
+      this.groq = new Groq({
+        apiKey: apiKey,
+        dangerouslyAllowBrowser: true
+      });
+    }
 
     // Store conversation state to avoid repetition
     const conversationKey = `${girlfriendId}_${userName}`;
